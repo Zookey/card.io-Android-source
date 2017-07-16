@@ -483,7 +483,6 @@ public final class CardIOActivity extends Activity {
                 mCardScanner = new CardScanner(this, mFrameOrientation);
             }
             mCardScanner.prepareScanner();
-
             setPreviewLayout();
 
             orientationListener = new OrientationEventListener(this,
@@ -940,6 +939,8 @@ public final class CardIOActivity extends Activity {
         FrameLayout previewFrame = new FrameLayout(this);
         previewFrame.setId(FRAME_ID);
 
+
+
         mPreview = new Preview(this, null, mCardScanner.mPreviewWidth, mCardScanner.mPreviewHeight);
         mPreview.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,
                 LayoutParams.MATCH_PARENT, Gravity.TOP));
@@ -960,14 +961,15 @@ public final class CardIOActivity extends Activity {
                 if (color != alphaRemovedColor) {
                     Log.w(Util.PUBLIC_LOG_TAG, "Removing transparency from provided guide color.");
                 }
-                mOverlay.setGuideColor(alphaRemovedColor);
+                mOverlay.setGuideColor(Color.WHITE);
             } else {
                 // default to greeeeeen
-                mOverlay.setGuideColor(Color.GREEN);
+                mOverlay.setGuideColor(Color.WHITE);
             }
 
             boolean hideCardIOLogo = getIntent().getBooleanExtra(EXTRA_HIDE_CARDIO_LOGO, false);
             mOverlay.setHideCardIOLogo(hideCardIOLogo);
+
 
             String scanInstructions = getIntent().getStringExtra(EXTRA_SCAN_INSTRUCTIONS);
             if (scanInstructions != null) {
@@ -975,6 +977,7 @@ public final class CardIOActivity extends Activity {
             }
 
         }
+
 
         previewFrame.addView(mOverlay);
 
@@ -990,16 +993,22 @@ public final class CardIOActivity extends Activity {
                 LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         previewParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         mUIBar.setLayoutParams(mUIBarParams);
-
         mUIBar.setId(UIBAR_ID);
-
         mUIBar.setGravity(Gravity.BOTTOM | Gravity.RIGHT);
 
         // Show the keyboard button
         if (!suppressManualEntry) {
             Button keyboardBtn = new Button(this);
             keyboardBtn.setId(KEY_BTN_ID);
-            keyboardBtn.setText(LocalizedStrings.getString(StringKey.KEYBOARD));
+            keyboardBtn.setBackgroundColor(Color.WHITE);
+            keyboardBtn.setCompoundDrawables(getResources().getDrawable(R.drawable.group), null, null, null);
+            keyboardBtn.setTextColor(getResources().getColor(R.color.cio_blue));
+           /* RelativeLayout.LayoutParams layoutParams =
+                    (RelativeLayout.LayoutParams)keyboardBtn.getLayoutParams();
+            layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+            keyboardBtn.setLayoutParams(layoutParams);*/
+            //keyboardBtn.setText(LocalizedStrings.getString(StringKey.KEYBOARD));
+            keyboardBtn.setText("Add card details manually");
             keyboardBtn.setOnClickListener(new Button.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -1007,21 +1016,19 @@ public final class CardIOActivity extends Activity {
                 }
             });
             mUIBar.addView(keyboardBtn);
-            ViewUtil.styleAsButton(keyboardBtn, false, this, useApplicationTheme);
+            /*ViewUtil.styleAsButton(keyboardBtn, false, this, useApplicationTheme);
             if(!useApplicationTheme){
                 keyboardBtn.setTextSize(Appearance.TEXT_SIZE_SMALL_BUTTON);
-            }
+            }*/
             keyboardBtn.setMinimumHeight(ViewUtil.typedDimensionValueToPixelsInt(
                     Appearance.SMALL_BUTTON_HEIGHT, this));
             RelativeLayout.LayoutParams keyboardParams = (RelativeLayout.LayoutParams) keyboardBtn
                     .getLayoutParams();
-            keyboardParams.width = LayoutParams.WRAP_CONTENT;
+            keyboardParams.width = LayoutParams.MATCH_PARENT;
             keyboardParams.height = LayoutParams.WRAP_CONTENT;
             keyboardParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-            ViewUtil.setPadding(keyboardBtn, Appearance.CONTAINER_MARGIN_HORIZONTAL, null,
-                    Appearance.CONTAINER_MARGIN_HORIZONTAL, null);
-            ViewUtil.setMargins(keyboardBtn, Appearance.BASE_SPACING, Appearance.BASE_SPACING,
-                    Appearance.BASE_SPACING, Appearance.BASE_SPACING);
+            //ViewUtil.setPadding(keyboardBtn, "16dp","16dp","16dp", "16dp");
+            //ViewUtil.setMargins(keyboardBtn, "16dp","16dp","16dp", "32dp");
 
         }
         // Device has a flash, show the flash button

@@ -68,7 +68,7 @@ import io.card.payment.i18n.StringKey;
 class OverlayView extends View {
     private static final String TAG = OverlayView.class.getSimpleName();
 
-    private static final float GUIDE_FONT_SIZE = 26.0f;
+    private static final float GUIDE_FONT_SIZE = 30.0f;
     private static final float GUIDE_LINE_PADDING = 8.0f;
     private static final float GUIDE_LINE_HEIGHT = GUIDE_FONT_SIZE + GUIDE_LINE_PADDING;
     private static final float CARD_NUMBER_MARKUP_FONT_SIZE = GUIDE_FONT_SIZE + 2;
@@ -76,7 +76,7 @@ class OverlayView extends View {
     private static final Orientation[] GRADIENT_ORIENTATIONS = { Orientation.TOP_BOTTOM,
             Orientation.LEFT_RIGHT, Orientation.BOTTOM_TOP, Orientation.RIGHT_LEFT };
 
-    private static final int GUIDE_STROKE_WIDTH = 17;
+    private static final int GUIDE_STROKE_WIDTH = 7;
 
     private static final float CORNER_RADIUS_SIZE = 1 / 15.0f;
 
@@ -100,6 +100,8 @@ class OverlayView extends View {
 
     private boolean hideCardIOLogo;
     private String scanInstructions;
+    private String scanInsructionsTitle = "Line up your card inside the frame.";
+    private String scanInstructionsDescription = "Your phone will auto-scan your details.";
 
     // Keep paint objects around for high frequency methods to avoid re-allocating them.
     private GradientDrawable mGradientDrawable;
@@ -135,7 +137,8 @@ class OverlayView extends View {
         mLockedBackgroundPaint.setStyle(Paint.Style.FILL);
         mLockedBackgroundPaint.setColor(0xbb000000); // 75% black
 
-        scanInstructions = LocalizedStrings.getString(StringKey.SCAN_GUIDE);
+        //scanInstructions = LocalizedStrings.getString(StringKey.SCAN_GUIDE);
+        scanInstructions = "Line up your card inside the frame. Your phone will auto-scan your details.";
     }
 
     public int getGuideColor() {
@@ -351,14 +354,17 @@ class OverlayView extends View {
                 canvas.translate(mGuide.left + mGuide.width() / 2, mGuide.top + mGuide.height() / 2);
                 canvas.rotate(mRotationFlip * mRotation);
 
-                if (scanInstructions != null && scanInstructions != "") {
+                if (scanInsructionsTitle != null && scanInsructionsTitle != "") {
                     String[] lines = scanInstructions.split("\n");
                     float y = -(((guideHeight * (lines.length - 1)) - guideFontSize) / 2) - 3;
 
-                    for (int i = 0; i < lines.length; i++) {
-                        canvas.drawText(lines[i], 0, y, mGuidePaint);
+                    canvas.drawText(scanInsructionsTitle, 0, y+440, mGuidePaint);
+                    canvas.drawText(scanInstructionsDescription, 0, y+500, mGuidePaint);
+
+                   /* for (int i = 0; i < lines.length; i++) {
+                        canvas.drawText(lines[i], 0, y+440, mGuidePaint);
                         y += guideHeight;
-                    }
+                    }*/
                 }
             }
         }
