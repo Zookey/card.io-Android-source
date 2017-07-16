@@ -17,6 +17,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -1000,8 +1001,9 @@ public final class CardIOActivity extends Activity {
         if (!suppressManualEntry) {
             Button keyboardBtn = new Button(this);
             keyboardBtn.setId(KEY_BTN_ID);
-            keyboardBtn.setBackgroundColor(Color.WHITE);
-            keyboardBtn.setCompoundDrawables(getResources().getDrawable(R.drawable.group), null, null, null);
+            keyboardBtn.setBackground(getResources().getDrawable(R.drawable.cio_button_bg));
+            keyboardBtn.setTypeface(Typeface.create("sans-serif", Typeface.BOLD));
+            keyboardBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cio_group, 0, 0, 0);
             keyboardBtn.setTextColor(getResources().getColor(R.color.cio_blue));
            /* RelativeLayout.LayoutParams layoutParams =
                     (RelativeLayout.LayoutParams)keyboardBtn.getLayoutParams();
@@ -1027,8 +1029,8 @@ public final class CardIOActivity extends Activity {
             keyboardParams.width = LayoutParams.MATCH_PARENT;
             keyboardParams.height = LayoutParams.WRAP_CONTENT;
             keyboardParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-            //ViewUtil.setPadding(keyboardBtn, "16dp","16dp","16dp", "16dp");
-            //ViewUtil.setMargins(keyboardBtn, "16dp","16dp","16dp", "32dp");
+            ViewUtil.setPadding(keyboardBtn, "32dp","16dp","32dp", "16dp");
+            ViewUtil.setMargins(keyboardBtn, "16dp","1dp","16dp", "1dp");
 
         }
         // Device has a flash, show the flash button
