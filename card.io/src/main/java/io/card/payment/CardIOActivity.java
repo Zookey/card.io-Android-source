@@ -995,6 +995,7 @@ public final class CardIOActivity extends Activity {
         previewParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         mUIBar.setLayoutParams(mUIBarParams);
         mUIBar.setId(UIBAR_ID);
+        mUIBar.setPadding(0, 0, 0, 32);
         mUIBar.setGravity(Gravity.BOTTOM | Gravity.RIGHT);
 
         // Show the keyboard button

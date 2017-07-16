@@ -100,8 +100,8 @@ class OverlayView extends View {
 
     private boolean hideCardIOLogo;
     private String scanInstructions;
-    private String scanInsructionsTitle = "Line up your card inside the frame.";
-    private String scanInstructionsDescription = "Your phone will auto-scan your details.";
+    //private String scanInsructionsTitle = "Line up your card inside the frame.";
+    //private String scanInstructionsDescription = "Your phone will auto-scan your details.";
 
     // Keep paint objects around for high frequency methods to avoid re-allocating them.
     private GradientDrawable mGradientDrawable;
@@ -137,8 +137,8 @@ class OverlayView extends View {
         mLockedBackgroundPaint.setStyle(Paint.Style.FILL);
         mLockedBackgroundPaint.setColor(0xbb000000); // 75% black
 
-        //scanInstructions = LocalizedStrings.getString(StringKey.SCAN_GUIDE);
-        scanInstructions = "Line up your card inside the frame. Your phone will auto-scan your details.";
+        scanInstructions = LocalizedStrings.getString(StringKey.SCAN_GUIDE);
+        //scanInstructions = "Line up your card inside the frame. Your phone will auto-scan your details.";
     }
 
     public int getGuideColor() {
@@ -354,17 +354,18 @@ class OverlayView extends View {
                 canvas.translate(mGuide.left + mGuide.width() / 2, mGuide.top + mGuide.height() / 2);
                 canvas.rotate(mRotationFlip * mRotation);
 
-                if (scanInsructionsTitle != null && scanInsructionsTitle != "") {
+                if (scanInstructions != null && scanInstructions != "") {
                     String[] lines = scanInstructions.split("\n");
-                    float y = -(((guideHeight * (lines.length - 1)) - guideFontSize) / 2) - 3;
+                    //float y = -(((guideHeight * (lines.length - 1)) - guideFontSize) / 2) - 3;
 
-                    canvas.drawText(scanInsructionsTitle, 0, y+440, mGuidePaint);
-                    canvas.drawText(scanInstructionsDescription, 0, y+500, mGuidePaint);
+                    float y = mGuide.height()-200;
+                    //canvas.drawText(scanInsructionsTitle, 0, y+440, mGuidePaint);
+                    //canvas.drawText(scanInstructionsDescription, 0, y+500, mGuidePaint);
 
-                   /* for (int i = 0; i < lines.length; i++) {
-                        canvas.drawText(lines[i], 0, y+440, mGuidePaint);
+                    for (int i = 0; i < lines.length; i++) {
+                        canvas.drawText(lines[i], 0, y, mGuidePaint);
                         y += guideHeight;
-                    }*/
+                    }
                 }
             }
         }
