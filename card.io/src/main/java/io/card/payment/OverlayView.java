@@ -76,7 +76,7 @@ class OverlayView extends View {
     private static final Orientation[] GRADIENT_ORIENTATIONS = { Orientation.TOP_BOTTOM,
             Orientation.LEFT_RIGHT, Orientation.BOTTOM_TOP, Orientation.RIGHT_LEFT };
 
-    private static final int GUIDE_STROKE_WIDTH = 7;
+    private static final int GUIDE_STROKE_WIDTH = 6;
 
     private static final float CORNER_RADIUS_SIZE = 1 / 15.0f;
 

@@ -819,7 +819,7 @@ public final class CardIOActivity extends Activity {
     private void nextActivity() {
         final Intent origIntent = getIntent();
         if (origIntent != null && origIntent.getBooleanExtra(EXTRA_SUPPRESS_CONFIRMATION, false)) {
-            Intent dataIntent = new Intent(CardIOActivity.this, DataEntryActivity.class);
+            Intent dataIntent = new Intent(CardIOActivity.this, EntryDataActivity.class);
             if (mDetectedCard != null) {
                 dataIntent.putExtra(EXTRA_SCAN_RESULT, mDetectedCard);
                 mDetectedCard = null;
@@ -835,7 +835,7 @@ public final class CardIOActivity extends Activity {
                     getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
                     getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
-                    Intent dataIntent = new Intent(CardIOActivity.this, DataEntryActivity.class);
+                    Intent dataIntent = new Intent(CardIOActivity.this, EntryDataActivity.class);
                     Util.writeCapturedCardImageIfNecessary(origIntent, dataIntent, mOverlay);
 
                     if (mOverlay != null) {
@@ -1003,8 +1003,9 @@ public final class CardIOActivity extends Activity {
             keyboardBtn.setId(KEY_BTN_ID);
             keyboardBtn.setBackground(getResources().getDrawable(R.drawable.cio_button_bg));
             keyboardBtn.setTypeface(Typeface.create("sans-serif", Typeface.BOLD));
-            keyboardBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cio_group, 0, 0, 0);
+            keyboardBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_card_group, 0, 0, 0);
             keyboardBtn.setTextColor(getResources().getColor(R.color.cio_blue));
+            keyboardBtn.setTextSize(14);
            /* RelativeLayout.LayoutParams layoutParams =
                     (RelativeLayout.LayoutParams)keyboardBtn.getLayoutParams();
             layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
@@ -1029,8 +1030,8 @@ public final class CardIOActivity extends Activity {
             keyboardParams.width = LayoutParams.MATCH_PARENT;
             keyboardParams.height = LayoutParams.WRAP_CONTENT;
             keyboardParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-            ViewUtil.setPadding(keyboardBtn, "32dp","16dp","32dp", "16dp");
-            ViewUtil.setMargins(keyboardBtn, "16dp","1dp","16dp", "1dp");
+            ViewUtil.setPadding(keyboardBtn, "48dp","8dp","48dp", "8dp");
+            ViewUtil.setMargins(keyboardBtn, "16dp","1dp","16dp", "16dp");
 
         }
         // Device has a flash, show the flash button

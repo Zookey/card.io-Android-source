@@ -405,7 +405,7 @@ public final class DataEntryActivity extends Activity implements TextWatcher {
         }
         container.addView(buttonLayout, buttonLayoutParam);
 
-        ActivityHelper.addActionBarIfSupported(this);
+        //ActivityHelper.addActionBarIfSupported(this);
 
         setContentView(container);
 

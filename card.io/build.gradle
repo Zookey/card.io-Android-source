@@ -78,8 +78,10 @@ android {
 }
 
 dependencies {
-    testCompile "junit:junit:4.12"
-    testCompile "org.robolectric:robolectric:3.1.2"
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.robolectric:robolectric:3.1.2'
 }
 
 // TODO remove the variant specific stuff from below - card.io doesn't have flavors
@@ -162,7 +164,7 @@ android.libraryVariants.all { variant ->
 
     uploadArchives {
         doFirst {
-            assert sonatypeUsername != null && sonatypePassword != null : "Please set sonatypeUsername and sonatypePassword in local.properties"
+            assert sonatypeUsername != null && sonatypePassword != null: "Please set sonatypeUsername and sonatypePassword in local.properties"
             println "***"
             println "uploading archives using username: '" + sonatypeUsername + "'"
             println "***"
