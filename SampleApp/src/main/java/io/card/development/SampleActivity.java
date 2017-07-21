@@ -162,7 +162,7 @@ public class SampleActivity extends Activity {
 
         if ((requestCode == REQUEST_SCAN || requestCode == REQUEST_AUTOTEST) && data != null
                 && data.hasExtra(CardIOActivity.EXTRA_SCAN_RESULT)) {
-            CreditCard result = data.getParcelableExtra(CardIOActivity.EXTRA_SCAN_RESULT);
+            CreditCard result = data.getParcelableExtra(CardIOActivity.EXTRA_SUPPRESS_CONFIRMATION);
             if (result != null) {
                 outStr += "Card number: " + result.getRedactedCardNumber() + "\n";
 

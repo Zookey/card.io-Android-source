@@ -130,6 +130,7 @@ class OverlayView extends View {
         mTorch = new Torch(TORCH_WIDTH * mScale, TORCH_HEIGHT * mScale);
         mLogo = new Logo(captureActivity);
 
+
         mGuidePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
         mLockedBackgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);

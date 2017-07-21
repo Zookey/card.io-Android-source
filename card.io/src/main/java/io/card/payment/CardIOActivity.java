@@ -951,8 +951,8 @@ public final class CardIOActivity extends Activity {
         mOverlay.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
                 LayoutParams.MATCH_PARENT));
         if (getIntent() != null) {
-            boolean useCardIOLogo = getIntent().getBooleanExtra(EXTRA_USE_CARDIO_LOGO, false);
-            mOverlay.setUseCardIOLogo(useCardIOLogo);
+            //boolean useCardIOLogo = getIntent().getBooleanExtra(EXTRA_USE_CARDIO_LOGO, false);
+            //mOverlay.setUseCardIOLogo(useCardIOLogo);
 
             int color = getIntent().getIntExtra(EXTRA_GUIDE_COLOR, 0);
 

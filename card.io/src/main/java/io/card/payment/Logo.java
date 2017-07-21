@@ -46,7 +46,7 @@ class Logo {
     }
 
     public void draw(Canvas canvas, float maxWidth, float maxHeight) {
-        if (mLogo == null) {
+        /* if (mLogo == null) {
             loadLogo(false);
         }
 
@@ -65,10 +65,10 @@ class Logo {
         float halfWidth = drawWidth / 2;
         float halfHeight = drawHeight / 2;
 
-        canvas.drawBitmap(mLogo, new Rect(0, 0, mLogo.getWidth(), mLogo.getHeight()), new RectF(
-                -halfWidth, -halfHeight, halfWidth, halfHeight), mPaint);
+        //canvas.drawBitmap(mLogo, new Rect(0, 0, mLogo.getWidth(), mLogo.getHeight()), new RectF(-halfWidth, -halfHeight, halfWidth, halfHeight), mPaint);
 
         canvas.restore();
+        */
     }
 
 }
