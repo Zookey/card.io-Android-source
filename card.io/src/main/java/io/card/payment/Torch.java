@@ -37,20 +37,20 @@ class Torch {
         float cornerRadius = CORNER_RADIUS;
         // Create border paint
         Paint borderPaint = new Paint();
-        borderPaint.setColor(Color.BLACK);
-        borderPaint.setStyle(Style.STROKE);
-        borderPaint.setAntiAlias(true);
-        borderPaint.setStrokeWidth(1.5f);
+        //borderPaint.setColor(Color.BLACK);
+        //borderPaint.setStyle(Style.STROKE);
+        //borderPaint.setAntiAlias(true);
+        //borderPaint.setStrokeWidth(1.5f);
 
         // Create fill paint
         Paint fillPaint = new Paint();
         fillPaint.setStyle(Style.FILL);
-        fillPaint.setColor(Color.WHITE);
-        if (mOn) {
-            fillPaint.setAlpha(BG_ALPHA * 2);
-        } else {
-            fillPaint.setAlpha(BG_ALPHA);
-        }
+        fillPaint.setColor(Color.TRANSPARENT);
+        //if (mOn) {
+            //fillPaint.setAlpha(BG_ALPHA * 2);
+        //} else {
+            //fillPaint.setAlpha(BG_ALPHA);
+        //}
 
         // Create the button itself
         float[] outerRadii = new float[8];
@@ -60,17 +60,17 @@ class Torch {
 
         // Draw the button stroke and background
         buttonShape.draw(canvas, fillPaint);
-        buttonShape.draw(canvas, borderPaint);
+        //buttonShape.draw(canvas, borderPaint);
 
         // Create bolt fill paint
         Paint boltPaint = new Paint();
         boltPaint.setStyle(Style.FILL_AND_STROKE);
         boltPaint.setAntiAlias(true);
-        if (mOn) {
+       // if (mOn) {
             boltPaint.setColor(Color.WHITE);
-        } else {
-            boltPaint.setColor(Color.BLACK);
-        }
+        //} else {
+            //boltPaint.setColor(Color.BLACK);
+        //}
 
         // Draw the bolt itself
         Path boltPath = createBoltPath();
