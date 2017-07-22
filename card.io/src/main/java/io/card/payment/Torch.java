@@ -36,31 +36,34 @@ class Torch {
         canvas.translate(-mWidth / 2, -mHeight / 2);
         float cornerRadius = CORNER_RADIUS;
         // Create border paint
-        Paint borderPaint = new Paint();
-        //borderPaint.setColor(Color.BLACK);
-        //borderPaint.setStyle(Style.STROKE);
-        //borderPaint.setAntiAlias(true);
-        //borderPaint.setStrokeWidth(1.5f);
+        if(mOn) {
+            Paint borderPaint = new Paint();
+            borderPaint.setColor(Color.WHITE);
+            borderPaint.setStyle(Style.STROKE);
+            borderPaint.setAntiAlias(true);
+            borderPaint.setStrokeWidth(1.5f);
 
-        // Create fill paint
-        Paint fillPaint = new Paint();
-        fillPaint.setStyle(Style.FILL);
-        fillPaint.setColor(Color.TRANSPARENT);
-        //if (mOn) {
+            // Create fill paint
+            Paint fillPaint = new Paint();
+            fillPaint.setStyle(Style.FILL);
+            fillPaint.setColor(Color.TRANSPARENT);
+            //if (mOn) {
             //fillPaint.setAlpha(BG_ALPHA * 2);
-        //} else {
+            //} else {
             //fillPaint.setAlpha(BG_ALPHA);
-        //}
+            //}
 
-        // Create the button itself
-        float[] outerRadii = new float[8];
-        Arrays.fill(outerRadii, cornerRadius);
-        RoundRectShape buttonShape = new RoundRectShape(outerRadii, null, null);
-        buttonShape.resize(mWidth, mHeight);
+            // Create the button itself
+            float[] outerRadii = new float[8];
+            Arrays.fill(outerRadii, cornerRadius);
+            RoundRectShape buttonShape = new RoundRectShape(outerRadii, null, null);
+            buttonShape.resize(mWidth, mHeight);
 
-        // Draw the button stroke and background
-        buttonShape.draw(canvas, fillPaint);
-        //buttonShape.draw(canvas, borderPaint);
+
+            // Draw the button stroke and background
+            buttonShape.draw(canvas, fillPaint);
+            buttonShape.draw(canvas, borderPaint);
+        }
 
         // Create bolt fill paint
         Paint boltPaint = new Paint();
@@ -79,6 +82,12 @@ class Torch {
         m.postScale(boltHeight, boltHeight);
         boltPath.transform(m);
         canvas.translate(mWidth / 2, mHeight / 2);
+        Paint linePaint = new Paint();
+        linePaint.setStrokeWidth(8);
+        linePaint.setColor(Color.WHITE);
+        if(mOn == false){
+            canvas.drawLine(-40, -40, 40, 40, linePaint);
+        }
         canvas.drawPath(boltPath, boltPaint);
         canvas.restore();
     }
