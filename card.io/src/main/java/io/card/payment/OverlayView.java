@@ -364,7 +364,16 @@ class OverlayView extends View {
                     //canvas.drawText(scanInstructionsDescription, 0, y+500, mGuidePaint);
 
                     for (int i = 0; i < lines.length; i++) {
-                        canvas.drawText(lines[i], 0, y, mGuidePaint);
+                        if(i==1) {
+                            canvas.drawText(lines[i], 0, y, mGuidePaint);
+                        } else if(i==0){
+                            Paint titlePaint = new Paint();
+                            Util.setupTextPaintStyle(titlePaint);
+                            titlePaint.setTextAlign(Align.CENTER);
+                            titlePaint.setTextSize(guideFontSize+32);
+
+                            canvas.drawText(lines[i], 0, y, titlePaint);
+                        }
                         y += guideHeight;
                     }
                 }
